@@ -1,0 +1,666 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
+  <title>Speklio Media — Digital Marketing That Scales Revenue</title>
+  <meta name="description" content="Speklio Media is a performance-focused digital marketing agency. We grow brands with paid ads, SEO, content, and conversion optimization." />
+  <meta name="theme-color" content="#5b56f0" />
+
+  <!-- Open Graph -->
+  <meta property="og:title" content="Speklio Media — Digital Marketing That Scales Revenue" />
+  <meta property="og:description" content="Performance-focused growth across Paid Ads, SEO, Content & CRO." />
+  <meta property="og:type" content="website" />
+  <meta property="og:image" content="data:image/svg+xml;charset=utf8,%3Csvg xmlns='http://www.w3.org/2000/svg' width='1200' height='630'%3E%3Cdefs%3E%3ClinearGradient id='g' x1='0' x2='1'%3E%3Cstop stop-color='%235b56f0'/%3E%3Cstop offset='1' stop-color='%2323c7f2'/%3E%3C/linearGradient%3E%3C/defs%3E%3Crect fill='url(%23g)' width='100%25' height='100%25'/%3E%3Ctext x='50%25' y='55%25' text-anchor='middle' font-family='Inter, Arial' font-size='72' fill='white' font-weight='700'%3ESpeklio Media%3C/text%3E%3C/svg%3E" />
+
+  <!-- Icons -->
+  <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns=%27http://www.w3.org/2000/svg%27 viewBox=%270 0 100 100%27%3E%3Cdefs%3E%3ClinearGradient id=%27g%27 x1=%270%27 x2=%271%27%3E%3Cstop stop-color=%27%235b56f0%27/%3E%3Cstop offset=%271%27 stop-color=%27%2323c7f2%27/%3E%3C/linearGradient%3E%3C/defs%3E%3Ccircle cx=%2750%27 cy=%2750%27 r=%2748%27 fill=%27url(%23g)%27/%3E%3Cpath d=%27M24 61l13-29 12 18 17-8-10 26z%27 fill=%27%23fff%27/%3E%3C/svg%3E" />
+
+  <!-- Fonts -->
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Sora:wght@400;600;700&display=swap" rel="stylesheet">
+
+  <style>
+    :root{
+      --bg:#0b0b12;
+      --panel:#11111a;
+      --ink:#eef2ff;
+      --muted:#a5b4fc;
+      --brand:#5b56f0;
+      --brand-2:#23c7f2;
+      --accent:#24e0a9;
+      --rule:#1e2030;
+      --shadow: 0 10px 30px rgba(0,0,0,.35), inset 0 1px 0 rgba(255,255,255,.05);
+      --radius: 18px;
+      --max: 1180px;
+    }
+    *{box-sizing:border-box}
+    html,body{height:100%}
+    body{
+      margin:0;
+      background:radial-gradient(1200px 800px at 85% -10%, rgba(35,199,242,.25), transparent 60%),
+                 radial-gradient(1200px 800px at -10% 10%, rgba(91,86,240,.28), transparent 60%), var(--bg);
+      color:var(--ink);
+      font-family: Inter, system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif;
+      line-height:1.65;
+    }
+    a{color:inherit;text-decoration:none}
+    img{max-width:100%;display:block}
+
+    /* Layout */
+    .container{max-width:var(--max); margin:0 auto; padding:0 20px}
+    .section{padding:64px 0}
+    @media (min-width:768px){ .section{padding:96px 0} }
+
+    /* Top bar */
+    .nav{
+      position:sticky; top:0; z-index:50; backdrop-filter: blur(12px);
+      background:linear-gradient(180deg, rgba(13,13,22,.8), rgba(13,13,22,.5));
+      border-bottom:1px solid var(--rule);
+    }
+    .nav-inner{display:flex; align-items:center; justify-content:space-between; gap:16px; height:64px}
+    .brand{display:flex; align-items:center; gap:12px; font-weight:800; letter-spacing:.2px}
+    .logo{
+      width:36px; height:36px; border-radius:12px; position:relative; overflow:hidden;
+      box-shadow: var(--shadow);
+      background:
+        conic-gradient(from 210deg at 50% 50%, var(--brand), var(--brand-2));
+    }
+    .brand span{font-family:Sora, Inter, sans-serif}
+    .nav a.button{padding:10px 16px; border-radius:12px; border:1px solid #2a2f45}
+    .cta{
+      display:inline-flex; align-items:center; gap:10px; padding:12px 18px; border-radius:14px;
+      background: linear-gradient(90deg, var(--brand), var(--brand-2));
+      color:white; font-weight:700; box-shadow: 0 10px 24px rgba(35,199,242,.25), 0 6px 16px rgba(91,86,240,.25);
+      transform: translateZ(0);
+    }
+    .cta:hover{filter:brightness(1.05)}
+    .ghost{background:transparent; border:1px solid #30324a}
+    .navlinks{display:none; gap:12px}
+    .burger{display:inline-flex; width:36px; height:36px; align-items:center; justify-content:center; border-radius:10px; border:1px solid #2a2f45}
+    @media (min-width:900px){ .navlinks{display:flex} .burger{display:none} }
+
+    /* Drawer */
+    .drawer{position:fixed; inset:0; background:rgba(5,6,12,.65); backdrop-filter: blur(6px); display:none}
+    .drawer.open{display:block}
+    .sheet{
+      position:absolute; right:0; top:0; height:100%; width:min(92vw, 380px);
+      background:var(--panel); border-left:1px solid var(--rule); padding:18px;
+      box-shadow: var(--shadow); animation: slideIn .25s ease forwards;
+    }
+    @keyframes slideIn{from{transform:translateX(20px); opacity:0} to{transform:none; opacity:1}}
+
+    /* Hero */
+    .hero{padding:80px 0 40px; position:relative}
+    .grid{
+      display:grid; gap:26px; align-items:center;
+      grid-template-columns: 1fr; 
+    }
+    @media (min-width:980px){
+      .grid{grid-template-columns: 1.1fr .9fr; gap:40px}
+    }
+    .eyebrow{display:inline-block; font-weight:700; color:#c7d2fe; background:#1a1b27; border:1px solid #2b2d43; padding:6px 10px; border-radius:999px}
+    h1{
+      font-family:Sora, Inter, sans-serif; line-height:1.1; letter-spacing:-.02em; margin:14px 0 12px;
+      font-size: clamp(34px, 5vw, 64px);
+    }
+    .lead{color:var(--muted); font-size: clamp(15px, 2.4vw, 19px)}
+    .actions{display:flex; gap:12px; margin-top:18px; flex-wrap:wrap}
+    .bullets{display:grid; grid-template-columns:1fr 1fr; gap:12px; margin-top:18px}
+    .chip{display:flex; align-items:center; gap:8px; padding:10px 12px; border:1px solid #2b2d43; border-radius:12px; background:#131424}
+    .chip svg{width:18px; height:18px; flex:0 0 auto}
+    .mock{
+      position:relative; padding:22px; border-radius:24px; border:1px solid #2b2d43;
+      background:linear-gradient(180deg, #121326, #0f1122); box-shadow: var(--shadow);
+      overflow:hidden; min-height: 360px;
+    }
+    .blob{
+      position:absolute; filter: blur(28px); opacity:.8; pointer-events:none;
+      background: radial-gradient(closest-side, rgba(91,86,240,.45), transparent 60%);
+      width: 420px; height: 420px; right:-80px; top:-60px;
+      animation: float 9s ease-in-out infinite;
+    }
+    .blob2{ left:-90px; top:auto; bottom:-60px; background: radial-gradient(closest-side, rgba(35,199,242,.45), transparent 60%); animation-duration: 12s}
+    @keyframes float{50%{transform:translateY(14px) translateX(-6px)}}
+
+    /* Cards & sections */
+    .section h2{font-family:Sora, Inter, sans-serif; letter-spacing:-.01em; font-size: clamp(26px, 3.8vw, 40px); margin:0 0 10px}
+    .muted{color:var(--muted)}
+    .grid-3{display:grid; gap:14px; grid-template-columns:1fr}
+    @media (min-width:720px){ .grid-3{grid-template-columns: repeat(2, 1fr)} }
+    @media (min-width:1024px){ .grid-3{grid-template-columns: repeat(3, 1fr)} }
+    .card{
+      background:linear-gradient(180deg, #121326, #0f1122);
+      border:1px solid #2b2d43; border-radius:18px; padding:18px; box-shadow: var(--shadow);
+    }
+    .card .icon{width:42px; height:42px; border-radius:12px; display:grid; place-items:center; 
+      background:linear-gradient(135deg, var(--brand), var(--brand-2)); margin-bottom:10px}
+    .card h3{margin:8px 0 6px; font-size:18px}
+    .card p{color:#b7c0ff; font-size:15px; margin:0}
+
+    .timeline{position:relative; margin-top:18px}
+    .timeline:before{content:""; position:absolute; left:20px; top:0; bottom:0; width:2px; background:#23253a}
+    .step{position:relative; padding-left:56px; margin:18px 0}
+    .step:before{content:""; position:absolute; left:11px; top:4px; width:18px; height:18px; border-radius:50%; background:linear-gradient(135deg, var(--brand), var(--brand-2)); box-shadow:0 0 0 4px #17192b}
+    .step h4{margin:0 0 4px}
+    .step p{margin:0; color:#b7c0ff}
+
+    .showcase{display:grid; gap:14px; grid-template-columns:1fr}
+    @media (min-width:900px){ .showcase{grid-template-columns: 1fr 1fr} }
+    .shot{
+      border:1px solid #2b2d43; border-radius:18px; padding:14px; background:linear-gradient(180deg, #111326, #0e0f1e);
+      box-shadow: var(--shadow);
+    }
+    .screen{
+      border-radius:12px; border:1px solid #2a2d43; background:
+        linear-gradient(180deg, #15182e, #12142a);
+      height: 200px; position:relative; overflow:hidden;
+    }
+    .bar{height:34px; border-bottom:1px solid #2a2d43; background:linear-gradient(180deg, #0f1227, #11152a);
+      display:flex; gap:6px; align-items:center; padding:0 10px}
+    .dot{width:10px; height:10px; border-radius:50%; background:#4b4f71}
+    .graph{position:absolute; inset:40px 16px 16px; border-radius:10px; background:
+      linear-gradient(180deg, rgba(99,102,241,.22), rgba(99,102,241,.06));
+    }
+    .line{position:absolute; left:0; right:0; bottom:0; height:2px; background: linear-gradient(90deg, var(--brand), var(--brand-2)); transform-origin:left; animation: grow 2.8s ease-in-out infinite}
+    @keyframes grow{0%{transform:scaleX(.15)}50%{transform:scaleX(.95)}100%{transform:scaleX(.15)}}
+
+    .testimonial{
+      display:grid; gap:14px; grid-template-columns:1fr; 
+    }
+    @media (min-width:900px){ .testimonial{grid-template-columns: 1.2fr .8fr} }
+
+    .quote{
+      padding:18px; border-radius:18px; border:1px solid #2b2d43; background:#111325; box-shadow: var(--shadow)
+    }
+    .quote p{font-size:18px; margin:6px 0}
+    .stars{color:#ffd166; letter-spacing:2px}
+    .avatar{display:flex; align-items:center; gap:10px; margin-top:10px}
+    .avatar .ph{width:38px; height:38px; border-radius:50%; background:linear-gradient(135deg, var(--brand), var(--brand-2))}
+
+    .pricing{display:grid; gap:14px; grid-template-columns:1fr}
+    @media (min-width:900px){ .pricing{grid-template-columns: repeat(3, 1fr)} }
+    .plan{padding:18px; border-radius:18px; border:1px solid #2b2d43; background:#111325}
+    .plan h3{margin:0}
+    .price{font-size:34px; font-weight:800; margin:8px 0}
+    .plan ul{margin:0; padding:0 0 0 18px; color:#b7c0ff}
+    .badge{display:inline-block; font-size:12px; padding:6px 9px; border-radius:999px; border:1px solid #33385b; color:#c7d2fe; background:#171a2f}
+
+    .faq details{border:1px solid #2b2d43; border-radius:14px; padding:14px; background:#111325; margin:10px 0}
+    .faq summary{cursor:pointer; font-weight:600}
+    .faq p{color:#b7c0ff}
+
+    .contact{
+      display:grid; gap:14px; grid-template-columns:1fr;
+    }
+    @media (min-width:900px){ .contact{grid-template-columns: 1fr 1fr} }
+    form{padding:18px; background:#111325; border:1px solid #2b2d43; border-radius:18px}
+    label{display:block; font-weight:600; margin:8px 0 6px}
+    input, textarea{
+      width:100%; padding:12px 14px; border-radius:12px; border:1px solid #2b2d43; background:#0f1122; color:var(--ink);
+      outline:none;
+    }
+    textarea{min-height:120px; resize:vertical}
+    .btn-row{display:flex; gap:10px; flex-wrap:wrap; margin-top:12px}
+    .whats{
+      display:inline-flex; align-items:center; gap:10px; padding:12px 14px; border-radius:12px; border:1px solid #2b2d43; background:#0f1b14
+    }
+
+    .footer{
+      padding:26px 0; border-top:1px solid var(--rule); color:#a7b0ff; background:#0c0d18
+    }
+    .footgrid{display:grid; gap:12px; grid-template-columns: 1fr; align-items:center}
+    @media (min-width:780px){ .footgrid{grid-template-columns: 1fr auto} }
+
+    /* Utilities */
+    .center{text-align:center}
+    .rule{height:1px; background:var(--rule); border:0; margin:18px 0}
+    .tag{display:inline-block; padding:6px 10px; font-weight:700; border:1px solid #2b2d43; background:#12142a; border-radius:999px}
+    .accent{background: linear-gradient(90deg, var(--brand), var(--brand-2)); -webkit-background-clip:text; background-clip:text; color:transparent}
+    .reel{display:flex; gap:10px; overflow:auto; padding-bottom:6px}
+    .reveal{opacity:0; transform:translateY(10px); transition:.5s ease}
+    .reveal.show{opacity:1; transform:none}
+
+    /* Floating CTA */
+    .float-cta{
+      position:fixed; right:14px; bottom:14px; z-index:40; display:flex; gap:10px;
+    }
+    .pill{border-radius:999px; padding:10px 14px; background:linear-gradient(90deg, var(--brand), var(--brand-2)); color:#fff; font-weight:700; box-shadow:0 12px 28px rgba(35,199,242,.25)}
+    .pill.ghost{background:#0f1327; border:1px solid #2b2d43; color:#c7d2fe}
+  </style>
+</head>
+<body>
+
+  <!-- Progress bar -->
+  <div id="progress" style="position:fixed;inset:0 0 auto 0;height:3px;background:linear-gradient(90deg,var(--brand),var(--brand-2));transform-origin:left;transform:scaleX(0); z-index:60;"></div>
+
+  <!-- Nav -->
+  <header class="nav">
+    <div class="container nav-inner">
+      <div class="brand">
+        <div class="logo" aria-hidden="true"></div>
+        <span>Speklio Media</span>
+      </div>
+      <nav class="navlinks" aria-label="Primary">
+        <a href="#services" class="button">Services</a>
+        <a href="#process" class="button">Process</a>
+        <a href="#work" class="button">Work</a>
+        <a href="#pricing" class="button">Pricing</a>
+        <a href="#contact" class="cta">Get Proposal</a>
+      </nav>
+      <button class="burger" id="openMenu" aria-label="Open Menu">
+        <svg width="20" height="20" viewBox="0 0 24 24" fill="none"><path d="M4 6h16M4 12h16M4 18h16" stroke="#c7ccff" stroke-width="2" stroke-linecap="round"/></svg>
+      </button>
+    </div>
+  </header>
+
+  <!-- Drawer -->
+  <div class="drawer" id="drawer" aria-hidden="true">
+    <div class="sheet">
+      <div style="display:flex;align-items:center;justify-content:space-between;gap:8px;">
+        <div class="brand"><div class="logo"></div><span>Speklio Media</span></div>
+        <button class="burger" id="closeMenu" aria-label="Close Menu">
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="none"><path d="M6 6l12 12M18 6L6 18" stroke="#c7ccff" stroke-width="2" stroke-linecap="round"/></svg>
+        </button>
+      </div>
+      <hr class="rule" />
+      <nav style="display:grid; gap:8px">
+        <a href="#services" class="cta" onclick="closeDrawer()">Services</a>
+        <a href="#process" class="cta" onclick="closeDrawer()">Process</a>
+        <a href="#work" class="cta" onclick="closeDrawer()">Work</a>
+        <a href="#pricing" class="cta" onclick="closeDrawer()">Pricing</a>
+        <a href="#contact" class="ghost cta" onclick="closeDrawer()">Contact</a>
+      </nav>
+    </div>
+  </div>
+
+  <!-- Hero -->
+  <section class="hero">
+    <div class="container grid">
+      <div>
+        <span class="eyebrow reveal">PERFORMANCE DIGITAL MARKETING</span>
+        <h1 class="reveal">Scale <span class="accent">Revenue</span> with Ads, SEO & CRO that actually compound.</h1>
+        <p class="lead reveal">We’re a full-stack growth team that designs, tests, and optimizes campaigns to acquire customers profitably — then squeezes every drop with landing pages and analytics.</p>
+        <div class="actions reveal">
+          <a href="#contact" class="cta">Get a Free Growth Plan</a>
+          <a href="#work" class="cta ghost">See Case Studies</a>
+        </div>
+        <div class="bullets reveal">
+          <div class="chip">
+            <svg viewBox="0 0 24 24" fill="none"><path d="M5 13l4 4L19 7" stroke="#24e0a9" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+            ROI-first campaigns
+          </div>
+          <div class="chip">
+            <svg viewBox="0 0 24 24" fill="none"><path d="M5 13l4 4L19 7" stroke="#24e0a9" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+            Weekly reporting
+          </div>
+          <div class="chip">
+            <svg viewBox="0 0 24 24" fill="none"><path d="M5 13l4 4L19 7" stroke="#24e0a9" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+            Landing page CRO
+          </div>
+          <div class="chip">
+            <svg viewBox="0 0 24 24" fill="none"><path d="M5 13l4 4L19 7" stroke="#24e0a9" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+            Pixel-perfect tracking
+          </div>
+        </div>
+      </div>
+
+      <div class="mock reveal" aria-label="Analytics preview">
+        <div class="blob"></div><div class="blob blob2"></div>
+        <div class="shot" style="position:relative; z-index:2">
+          <div class="bar">
+            <div class="dot"></div><div class="dot"></div><div class="dot"></div>
+            <div style="margin-left:8px;color:#aeb7ff">Dashboard — Growth Overview</div>
+          </div>
+          <div class="screen">
+            <div class="graph"></div>
+            <div class="line"></div>
+          </div>
+          <div class="reel" style="margin-top:12px">
+            <span class="tag">CTR ↑ 2.1x</span>
+            <span class="tag">CPL ↓ 38%</span>
+            <span class="tag">ROAS 4.3</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Services -->
+  <section id="services" class="section">
+    <div class="container">
+      <h2 class="reveal">What we do</h2>
+      <p class="muted reveal">Full-funnel growth without a bloated headcount.</p>
+      <div class="grid-3" style="margin-top:14px">
+        <article class="card reveal">
+          <div class="icon"><svg viewBox="0 0 24 24" fill="none"><path d="M3 12h7m0 0l-3 3m3-3l-3-3M21 12h-7m0 0l3 3m-3-3l3-3" stroke="#fff" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg></div>
+          <h3>Paid Ads (Meta, Google, TikTok)</h3>
+          <p>Creative testing frameworks, audience strategy, and budget pacing to acquire customers profitably.</p>
+        </article>
+        <article class="card reveal">
+          <div class="icon"><svg viewBox="0 0 24 24" fill="none"><path d="M12 6v12M6 12h12" stroke="#fff" stroke-width="2" stroke-linecap="round"/></svg></div>
+          <h3>SEO & Content</h3>
+          <p>Topic clusters, technical fixes, and content that builds authority & organic demand.</p>
+        </article>
+        <article class="card reveal">
+          <div class="icon"><svg viewBox="0 0 24 24" fill="none"><path d="M9 17l-5-5 1.5-1.5L9 14l9.5-9.5L20 6z" stroke="#fff" stroke-width="2"/></svg></div>
+          <h3>CRO & Landing Pages</h3>
+          <p>Research, wireframes, high-converting UI, and A/B tests to lift conversions and lower CAC.</p>
+        </article>
+        <article class="card reveal">
+          <div class="icon"><svg viewBox="0 0 24 24" fill="none"><path d="M4 4h16v8H4zM4 16h10" stroke="#fff" stroke-width="2"/></svg></div>
+          <h3>Analytics & Tracking</h3>
+          <p>GTM, GA4, server-side events, and full-funnel dashboards to connect spend to revenue.</p>
+        </article>
+        <article class="card reveal">
+          <div class="icon"><svg viewBox="0 0 24 24" fill="none"><path d="M12 3l3 7h7l-5.5 4.1L19 21l-7-4.5L5 21l2.5-6.9L2 10h7z" stroke="#fff" stroke-width="2"/></svg></div>
+          <h3>Creative Production</h3>
+          <p>Thumb-stopping ad creatives, UGC scripts, motion, and image systems that scale.</p>
+        </article>
+        <article class="card reveal">
+          <div class="icon"><svg viewBox="0 0 24 24" fill="none"><path d="M4 7h16M4 12h16M4 17h10" stroke="#fff" stroke-width="2"/></svg></div>
+          <h3>Email & Lifecycle</h3>
+          <p>Flows, campaigns, and segmentation to boost LTV and pay back CAC faster.</p>
+        </article>
+      </div>
+    </div>
+  </section>
+
+  <!-- Process -->
+  <section id="process" class="section">
+    <div class="container">
+      <h2 class="reveal">How we work</h2>
+      <p class="muted reveal">Proven, repeatable, and transparent.</p>
+      <div class="timeline">
+        <div class="step reveal">
+          <h4>1) Audit & Growth Plan</h4>
+          <p>We review channels, tracking, offers, and creatives. You get a 90-day roadmap.</p>
+        </div>
+        <div class="step reveal">
+          <h4>2) Foundations</h4>
+          <p>Tracking, events, pixels, product feeds, and high-converting landing pages.</p>
+        </div>
+        <div class="step reveal">
+          <h4>3) Creative & Testing</h4>
+          <p>Iterative ad frameworks, audience testing, and CRO experiments.</p>
+        </div>
+        <div class="step reveal">
+          <h4>4) Scale & Automate</h4>
+          <p>Budget pacing, rules, and insights dashboards that tie spend to revenue.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Work -->
+  <section id="work" class="section">
+    <div class="container">
+      <h2 class="reveal">Selected work</h2>
+      <p class="muted reveal">Real outcomes we love to repeat.</p>
+      <div class="showcase" style="margin-top:14px">
+        <div class="shot reveal">
+          <strong>DNVB — Beauty</strong>
+          <div class="screen" aria-hidden="true">
+            <div class="bar"><div class="dot"></div><div class="dot"></div><div class="dot"></div><span style="margin-left:8px;color:#aeb7ff">ROAS 4.1</span></div>
+            <div class="graph"></div><div class="line" style="animation-delay:.2s"></div>
+          </div>
+          <p class="muted" style="margin-top:8px">Scaled from ₹3L to ₹12L/month in 60 days with creative testing + CRO.</p>
+        </div>
+        <div class="shot reveal">
+          <strong>SaaS — B2B</strong>
+          <div class="screen" aria-hidden="true">
+            <div class="bar"><div class="dot"></div><div class="dot"></div><div class="dot"></div><span style="margin-left:8px;color:#aeb7ff">CPL ↓ 42%</span></div>
+            <div class="graph"></div><div class="line" style="animation-delay:.6s"></div>
+          </div>
+          <p class="muted" style="margin-top:8px">Rebuilt funnel + offer tests. Increased demo rate by 2.3x.</p>
+        </div>
+      </div>
+
+      <div class="testimonial" style="margin-top:18px">
+        <div class="quote reveal">
+          <div class="stars">★★★★★</div>
+          <p>“Speklio Media plugged into our stack like an in-house team. Tracking, ads, landing pages — all stitched together. Revenue up 78% in 90 days.”</p>
+          <div class="avatar">
+            <div class="ph" aria-hidden="true"></div>
+            <div>
+              <strong>Neha Verma</strong><br><span class="muted">Founder, Glowry Cosmetics</span>
+            </div>
+          </div>
+        </div>
+        <div class="quote reveal">
+          <div class="stars">★★★★★</div>
+          <p>“Best decision this year. We finally see where money goes — and what to do next week.”</p>
+          <div class="avatar">
+            <div class="ph" aria-hidden="true"></div>
+            <div>
+              <strong>Rahul Mehta</strong><br><span class="muted">CMO, SaaSly</span>
+            </div>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </section>
+
+  <!-- Pricing -->
+  <section id="pricing" class="section">
+    <div class="container">
+      <h2 class="reveal">Simple pricing</h2>
+      <p class="muted reveal">No lock-ins. Scale up or down as needed.</p>
+      <div class="pricing" style="margin-top:14px">
+        <div class="plan reveal">
+          <span class="badge">Starter</span>
+          <h3>Launch</h3>
+          <div class="price">₹49k/m</div>
+          <ul>
+            <li>1–2 Channels</li>
+            <li>Bi-weekly reporting</li>
+            <li>Landing page template</li>
+          </ul>
+          <div class="btn-row" style="margin-top:12px">
+            <a href="#contact" class="cta">Start</a>
+          </div>
+        </div>
+        <div class="plan reveal" style="border-color:#3b3fff">
+          <span class="badge">Most Popular</span>
+          <h3>Growth</h3>
+          <div class="price">₹99k/m</div>
+          <ul>
+            <li>3–4 Channels</li>
+            <li>Weekly reporting</li>
+            <li>Custom landing pages</li>
+            <li>Advanced tracking</li>
+          </ul>
+          <div class="btn-row" style="margin-top:12px">
+            <a href="#contact" class="cta">Scale with us</a>
+          </div>
+        </div>
+        <div class="plan reveal">
+          <span class="badge">For Scale</span>
+          <h3>Performance</h3>
+          <div class="price">Custom</div>
+          <ul>
+            <li>Multi-geo, multi-product</li>
+            <li>Creative sprint every 2 weeks</li>
+            <li>CRO program + analytics</li>
+          </ul>
+          <div class="btn-row" style="margin-top:12px">
+            <a href="#contact" class="cta ghost">Request proposal</a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- FAQ -->
+  <section class="section">
+    <div class="container">
+      <h2 class="reveal">FAQs</h2>
+      <div class="faq">
+        <details class="reveal">
+          <summary>What industries do you work with?</summary>
+          <p>D2C/eCommerce, SaaS, local services, and lead gen. We adapt the growth playbook to your economics.</p>
+        </details>
+        <details class="reveal">
+          <summary>How fast can we start?</summary>
+          <p>Audit & growth plan in 5–7 business days. Launch in 1–2 weeks depending on tracking/creative readiness.</p>
+        </details>
+        <details class="reveal">
+          <summary>Do you handle creatives and landing pages?</summary>
+          <p>Yes. We script, design, and ship. We also run A/B tests to keep improving results.</p>
+        </details>
+      </div>
+    </div>
+  </section>
+
+  <!-- Contact -->
+  <section id="contact" class="section">
+    <div class="container">
+      <h2 class="reveal">Get your free growth plan</h2>
+      <p class="muted reveal">Tell us about your goals — we’ll respond within 24 hours.</p>
+      <div class="contact" style="margin-top:14px">
+        <form id="leadForm" class="reveal" onsubmit="return handleSubmit(event)">
+          <label for="name">Name</label>
+          <input id="name" name="name" required placeholder="Your name" />
+
+          <label for="email">Email</label>
+          <input id="email" name="email" type="email" required placeholder="you@company.com" />
+
+          <label for="site">Website</label>
+          <input id="site" name="site" type="url" placeholder="https://example.com" />
+
+          <label for="budget">Monthly Ad Budget (₹)</label>
+          <input id="budget" name="budget" inputmode="numeric" placeholder="e.g. 150000" />
+
+          <label for="msg">Goals</label>
+          <textarea id="msg" name="msg" placeholder="What are you trying to achieve in the next 90 days?"></textarea>
+
+          <div class="btn-row">
+            <button class="cta" type="submit">Send Request</button>
+            <a class="whats" id="wa" href="#" target="_blank" rel="noopener">
+              <svg width="18" height="18" viewBox="0 0 24 24" fill="none"><path d="M16.2 13.5c-.2-.1-1.2-.6-1.4-.7-.2-.1-.4-.1-.6.1-.2.3-.7.8-.8 1-.1.2-.3.2-.5.1-1-.4-1.8-1-2.5-1.8-.2-.2-.2-.4 0-.6.1-.1.3-.4.4-.5.1-.1.1-.3.1-.4s-.1-.3-.1-.4c0-.1-.6-1.5-.8-2 0-.4-.3-.5-.5-.5h-.4c-.1 0-.4.1-.6.3-.2.3-.8.8-.8 2 0 1.1.8 2.1.9 2.3 0 0 1.6 2.6 3.8 3.6 2.2 1.1 2.2.7 2.6.6.4 0 1.3-.6 1.5-1.1.2-.5.2-1 .1-1.1-.1-.1-.2-.1-.4-.2z" fill="#25D366"/><path d="M20.5 12c0 4.7-3.8 8.5-8.5 8.5-1.5 0-2.9-.4-4.1-1.1l-2.8.9.9-2.7c-.8-1.2-1.3-2.6-1.3-4.1 0-4.7 3.8-8.5 8.5-8.5S20.5 7.3 20.5 12z" stroke="#25D366" fill="none"/></svg>
+              WhatsApp
+            </a>
+            <a class="ghost cta" href="mailto:hello@speklio.media?subject=Growth%20Plan%20Request&body=Hi%20Speklio%20Media%2C%0A%0AHere%20are%20my%20details%3A%0AName%3A%20%0AWebsite%3A%20%0ABudget%3A%20%0AGoals%3A%20" target="_blank" rel="noopener">Email Us</a>
+          </div>
+          <p id="formNote" class="muted" style="margin-top:6px"></p>
+        </form>
+
+        <div class="card reveal">
+          <h3>What you’ll get</h3>
+          <ul style="margin:8px 0 0 18px; color:#b7c0ff">
+            <li>Audit of ads, analytics, and funnel</li>
+            <li>A 90-day growth roadmap</li>
+            <li>Quick wins & roadmap to scale</li>
+          </ul>
+          <hr class="rule">
+          <h3>Contact</h3>
+          <p class="muted">hello@speklio.media<br/>+91 90000 00000</p>
+          <div class="reel" style="margin-top:8px">
+            <span class="tag">India</span>
+            <span class="tag">Remote-first</span>
+            <span class="tag">GMT+5:30</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Footer -->
+  <footer class="footer">
+    <div class="container footgrid">
+      <div style="display:flex;align-items:center;gap:10px">
+        <div class="logo"></div>
+        <div>
+          <strong>Speklio Media</strong><br><span class="muted">Digital marketing that compounds.</span>
+        </div>
+      </div>
+      <div class="reel" style="justify-content:flex-end">
+        <a href="#services" class="button">Services</a>
+        <a href="#work" class="button">Work</a>
+        <a href="#contact" class="cta">Get Proposal</a>
+      </div>
+    </div>
+  </footer>
+
+  <!-- Floating CTA -->
+  <div class="float-cta">
+    <a class="pill" href="#contact">Get Growth Plan</a>
+    <a class="pill ghost" id="floatWA" href="#" target="_blank" rel="noopener">WhatsApp</a>
+  </div>
+
+  <!-- Schema -->
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "Organization",
+    "name": "Speklio Media",
+    "url": "https://speklio.media",
+    "logo": "https://speklio.media/logo.svg",
+    "sameAs": [],
+    "contactPoint": [{
+      "@type": "ContactPoint",
+      "contactType": "customer service",
+      "email": "hello@speklio.media",
+      "telephone": "+919000000000",
+      "areaServed": "IN"
+    }]
+  }
+  </script>
+
+  <script>
+    // Drawer
+    const drawer = document.getElementById('drawer');
+    const openMenu = document.getElementById('openMenu');
+    const closeMenuBtn = document.getElementById('closeMenu');
+    const closeDrawer = () => { drawer.classList.remove('open'); drawer.setAttribute('aria-hidden','true'); };
+    openMenu?.addEventListener('click', () => { drawer.classList.add('open'); drawer.setAttribute('aria-hidden','false'); });
+    closeMenuBtn?.addEventListener('click', closeDrawer);
+    drawer?.addEventListener('click', (e) => { if(e.target === drawer) closeDrawer(); });
+
+    // Progress
+    const progress = document.getElementById('progress');
+    const onScroll = () => {
+      const h = document.documentElement;
+      const scrolled = (h.scrollTop)/(h.scrollHeight - h.clientHeight);
+      progress.style.transform = `scaleX(${Math.max(0, Math.min(1, scrolled))})`;
+    };
+    document.addEventListener('scroll', onScroll, { passive:true }); onScroll();
+
+    // Reveal on scroll
+    const io = new IntersectionObserver((entries) => {
+      entries.forEach(e => { if(e.isIntersecting){ e.target.classList.add('show'); io.unobserve(e.target); }});
+    }, { threshold: .1 });
+    document.querySelectorAll('.reveal').forEach(el => io.observe(el));
+
+    // Form submit -> WhatsApp prefill + toast
+    function handleSubmit(e){
+      e.preventDefault();
+      const name = document.getElementById('name').value.trim();
+      const email = document.getElementById('email').value.trim();
+      const site = document.getElementById('site').value.trim();
+      const budget = document.getElementById('budget').value.trim();
+      const msg = document.getElementById('msg').value.trim();
+      const text = `Hi Speklio Media,%0A%0AI'm ${encodeURIComponent(name)} (%20${encodeURIComponent(email)}).%0ASite: ${encodeURIComponent(site)}%0ABudget: ₹${encodeURIComponent(budget)}%0AGoals: ${encodeURIComponent(msg)}%0A%0APlease share a growth plan.`;
+      const phone = "919000000000"; // change to your WhatsApp number with country code
+      const waUrl = `https://wa.me/${phone}?text=${text}`;
+      document.getElementById('wa').href = waUrl;
+      document.getElementById('floatWA').href = waUrl;
+      window.open(waUrl, '_blank');
+      const note = document.getElementById('formNote');
+      note.textContent = "Opened WhatsApp with your details. You can also email us — we reply within 24 hours.";
+      return false;
+    }
+
+    // Prefill WA on load for floating button
+    (function initWA(){
+      const name=""; const email=""; const site=""; const budget=""; const msg="";
+      const text = `Hi Speklio Media,%0A%0AI'm ${encodeURIComponent(name)} (%20${encodeURIComponent(email)}).%0ASite: ${encodeURIComponent(site)}%0ABudget: ₹${encodeURIComponent(budget)}%0AGoals: ${encodeURIComponent(msg)}%0A%0APlease share a growth plan.`;
+      const phone = "919000000000";
+      const waUrl = `https://wa.me/${phone}?text=${text}`;
+      document.getElementById('floatWA').href = waUrl;
+      document.getElementById('wa').href = waUrl;
+    })();
+  </script>
+</body>
+</html>
